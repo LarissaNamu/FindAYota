@@ -2,17 +2,19 @@ import json
 
 
 class Traits:
-    def __init__(self, engine_type, drive_train, seats, body):
+    def __init__(self, engine_type, drive_train, seats, body, color):
         self.engine_type = engine_type
         self.drive_train = drive_train
         self.seats = seats
         self.body = body
+        self.color = color
 
     def __str__(self):
         return (f"Engine Type: {self.engine_type}\n"
                 f"Drive Train: {self.drive_train}\n"
                 f"Seats: {self.seats}\n"
-                f"Body: {self.body}")
+                f"Body: {self.body}"
+                f"Color: {self.color}")
 
 class Vehicle:
     def __init__(self, id, model, price, traits, mpg):
@@ -44,10 +46,11 @@ class Vehicle:
             # extract traits from the json file
             traits_data = entry.get('traits', {})
             traits = Traits(
-                engine_type=traits_data.get('engine_type'),
-                drive_train=traits_data.get('drive_train'),
-                seats=traits_data.get('seats'),
-                body=traits_data.get('body')
+                engine_type = traits_data.get('engine_type'),
+                drive_train = traits_data.get('drive_train'),
+                seats = traits_data.get('seats'),
+                body = traits_data.get('body'),
+                color = traits_data.get('color')
             )
 
             # create a new object for the vehicle
