@@ -81,7 +81,7 @@ def compute_points(u_data, v_map, cars):
     # print("THE CARS")
     # print(cars) -- 'vehicles' big list
     hierarchy = {
-        "engine": 50,
+        "engine": 30,
         "body_style": 90,
         "drivetrain": 10
     } #SUV FWD Hybrid
