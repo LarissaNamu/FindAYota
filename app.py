@@ -72,6 +72,7 @@ def form():
 
     return render_template("form.html", traits=traits_to_ask)  # will be an array
 
+
 # code in compute vehicle points function here
 # hierarchy
 # Engine -> Body -> DriveTrain -> MPG
