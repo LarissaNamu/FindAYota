@@ -76,5 +76,54 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function updateCashDownValue(value) {
+            document.getElementById('cashDownValue').textContent = value;
+            calculatePayment();
+        }
+
+        document.getElementById('creditScore').addEventListener('input', function() {
+            document.getElementById('creditScoreValue').textContent = this.value;
+            calculatePayment();
+        });
+
+        document.querySelectorAll('.term-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.term-btn').forEach(btn => btn.classList.remove('bg-blue-500', 'text-white'));
+                this.classList.add('bg-blue-500', 'text-white');
+                calculatePayment();
+            });
+        });
+
+        document.getElementById('tradeIn').addEventListener('input', function() {
+            calculatePayment();
+        });
+
+        function calculatePayment() {
+            const cashDown = parseInt(document.getElementById('cashDown').value);
+            const creditScore = parseInt(document.getElementById('creditScore').value);
+            const tradeIn = parseFloat(document.getElementById('tradeIn').value) || 0;
+            const termLength = document.querySelector('.term-btn.bg-blue-500')?.dataset.value || 24;
+
+            fetch('/finance/{{ car.id }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    cash_down: cashDown,
+                    credit_score: creditScore,
+                    trade_in: tradeIn,
+                    loan_term: termLength
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('monthlyPayment').textContent = `$${data.monthly_payment.toFixed(2)}/mo`;
+                document.getElementById('apr').textContent = `APR: ${data.apr}%`;
+            });
+        }
+    </script>
 </body>
 </html>

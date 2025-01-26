@@ -1,6 +1,5 @@
 class Finance:
-    def __init__(self, desired_monthly, credit_score, down_payment, loan_term, trade_in, vehicle_price=None):
-        self.desired_monthly = desired_monthly
+    def __init__(self, credit_score, down_payment, loan_term, trade_in, vehicle_price=None):
         self.credit_score = credit_score
         self.down_payment = down_payment
         self.loan_term = loan_term
@@ -18,7 +17,11 @@ class Finance:
         if rate == 0:
             return total_loan / term
         else:
-            return (total_loan * rate * (1 + rate) ** term) / ((1 + rate) ** term - 1)
+            mp = (total_loan * rate * (1 + rate) ** term) / ((1 + rate) ** term - 1)
+            if mp >= 0:
+                return mp
+            else:
+                return 0
     
 
     def calc_apr(self):
