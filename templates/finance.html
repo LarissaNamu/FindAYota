@@ -4,99 +4,165 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <title>Payment Estimator</title>
+    <style>
+        /* Styling the range slider */
+        .custom-slider {
+            -webkit-appearance: none; /* Remove default styling for Webkit browsers */
+            appearance: none; /* Remove default styling for other browsers */
+            width: 100%; /* Ensure slider takes full width */
+            height: 8px; /* Adjust height of the slider */
+            background: #d1d5db; /* Set the track background to gray */
+            border-radius: 5px; /* Optional: rounding the edges of the slider */
+        }
 
+        /* Style for the thumb (the draggable part of the slider) */
+        .custom-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #6b7280; /* Dark gray color for the thumb */
+            border-radius: 50%; /* Make it round */
+            cursor: pointer;
+        }
+
+        .custom-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #6b7280; /* Dark gray color for the thumb */
+            border-radius: 50%; /* Make it round */
+            cursor: pointer;
+        }
+
+        /* Optional: Adding hover effect for the thumb */
+        .custom-slider::-webkit-slider-thumb:hover {
+            background: #4b5563; /* Darker gray when hovering */
+        }
+
+        .custom-slider::-moz-range-thumb:hover {
+            background: #4b5563; /* Darker gray when hovering */
+        }
+    </style>
 </head>
-<body class="bg-gray-100 text-gray-800">
+<body class="bg-gray-100">
 
-    <!-- Navigation Bar -->
     <nav class="bg-white p-6 flex items-center justify-between shadow-md">
-        <!-- Logo on the left -->
-        <img src="../static/css/images/WebAssets/toyota_red_logo2.png" alt="Toyota Logo" class="w-32 h-auto">
-        
-        <!-- Links on the right -->
+         <a href="{{ url_for('home') }}">
+            <img src="../static/css/images/WebAssets/toyota_red_logo2.png" alt="Toyota Logo" class="w-32 h-auto">
+        </a>
         <div class="space-x-6 text-red-600 font-bold">
             <a href="https://github.com/LarissaNamu/FindAYota" class="hover:text-red-700 transition duration-300">About</a>
-            <a href="form.html" class="hover:text-red-700 transition duration-300">FindAYota</a>
+            <a href="{{ url_for('form') }}" class="hover:text-red-700 transition duration-300">FindAYota</a>
         </div>
     </nav>
-    
-    <div class="w-full max-w-4xl bg-white rounded-2xl shadow-xl p-8 transform transition-all">
-        <div class="text-center mb-8">
-            <h2 class="text-3xl font-bold text-gray-800">Premium Package</h2>
-            <div class="mt-4 transform transition-all duration-500 animate-pulse">
-                <span class="text-5xl font-bold text-indigo-600">$24,999</span>
-            </div>
+
+    <div>
+        <div class="w-1/2 p-6 fixed h-full flex items-center justify-center">
+            <img src="{{car.image_path}}" alt="Vehicle" class="w-full max-w-xl">
         </div>
 
-        <div class="space-y-4">
-            <div class="text-gray-600 mb-4">Select your financing period:</div>
-            
-            <div class="grid grid-cols-3 md:grid-cols-6 gap-2">
-                <label class="relative block">
-                    <input type="radio" name="period" class="peer sr-only" checked>
-                    <div class="h-full flex flex-col items-center justify-center px-2 py-3 rounded-lg bg-white border-2 border-indigo-600 text-indigo-600 font-semibold cursor-pointer transition-all hover:bg-indigo-50 peer-checked:bg-indigo-600 peer-checked:text-white text-sm">
-                        <span>12 Months</span>
-                        <span class="text-xs mt-1 opacity-75">3.9% APR</span>
-                    </div>
-                </label>
+        <div class="w-1/2 ml-auto h-full p-6">
+            <div class="bg-white shadow-lg rounded-lg p-6">
+                <h1 class="text-4xl font-bold mb-6">{{ car.model.title() }}</h1>
+                <div class="flex items-center justify-between mb-4">
+                    <span class="text-3xl inline" id="monthlyPayment">$0/mo</span>
+                    <span class="text-sm inline -ml-1" id="apr">APR: 0%</span>
 
-                <label class="relative block">
-                    <input type="radio" name="period" class="peer sr-only">
-                    <div class="h-full flex flex-col items-center justify-center px-2 py-3 rounded-lg border-2 border-gray-200 cursor-pointer transition-all hover:border-indigo-600 peer-checked:border-indigo-600 peer-checked:bg-indigo-50 text-sm">
-                        <span class="font-semibold text-gray-800">24 Months</span>
-                        <span class="text-xs mt-1 text-gray-500">4.5% APR</span>
+                    <span class="text-3xl">MSRP: ${{ "{:,.0f}".format(car.price) }}</span>
+                </div>
+                
+                <div class="mb-6">
+                    <div class="flex justify-between items-center">
+                        <label for="cashDown" class="block text-sm font-medium text-gray-700">Cash Down</label>
+                        <span id="cashDownValue" class="text-sm font-bold">0</span>
                     </div>
-                </label>
-
-                <label class="relative block">
-                    <input type="radio" name="period" class="peer sr-only">
-                    <div class="h-full flex flex-col items-center justify-center px-2 py-3 rounded-lg border-2 border-gray-200 cursor-pointer transition-all hover:border-indigo-600 peer-checked:border-indigo-600 peer-checked:bg-indigo-50 text-sm">
-                        <span class="font-semibold text-gray-800">36 Months</span>
-                        <span class="text-xs mt-1 text-gray-500">5.2% APR</span>
+                    <input 
+                        type="range" 
+                        id="cashDown" 
+                        min="0" 
+                        max="20000" 
+                        step="1000" 
+                        class="custom-slider mt-2" 
+                        value="0" 
+                        oninput="updateCashDownValue(this.value)"
+                    >
+                </div>
+                
+                <div class="mb-6">
+                    <label for="termLength" class="block text-sm font-medium text-gray-700">Term Length</label>
+                    <div id="termLengthOptions" class="flex space-x-4 mt-2">
+                        <button class="term-btn px-4 py-2 border rounded-md" data-value="24">24 mo</button>
+                        <button class="term-btn px-4 py-2 border rounded-md" data-value="36">36 mo</button>
+                        <button class="term-btn px-4 py-2 border rounded-md" data-value="48">48 mo</button>
+                        <button class="term-btn px-4 py-2 border rounded-md" data-value="60">60 mo</button>
+                        <button class="term-btn px-4 py-2 border rounded-md" data-value="72">72 mo</button>
                     </div>
-                </label>
+                </div>
 
-                <label class="relative block">
-                    <input type="radio" name="period" class="peer sr-only">
-                    <div class="h-full flex flex-col items-center justify-center px-2 py-3 rounded-lg border-2 border-gray-200 cursor-pointer transition-all hover:border-indigo-600 peer-checked:border-indigo-600 peer-checked:bg-indigo-50 text-sm">
-                        <span class="font-semibold text-gray-800">48 Months</span>
-                        <span class="text-xs mt-1 text-gray-500">5.9% APR</span>
+                <div class="mb-6">
+                    <div class="flex justify-between items-center">
+                        <label for="creditScore" class="block text-sm font-medium text-gray-700">Est. Credit Score</label>
+                        <span id="creditScoreValue" class="text-sm font-bold">0</span>
                     </div>
-                </label>
+                    <input type="range" id="creditScore" min="300" max="850" step="1" value="0" class="custom-slider mt-2">
+                </div>
 
-                <label class="relative block">
-                    <input type="radio" name="period" class="peer sr-only">
-                    <div class="h-full flex flex-col items-center justify-center px-2 py-3 rounded-lg border-2 border-gray-200 cursor-pointer transition-all hover:border-indigo-600 peer-checked:border-indigo-600 peer-checked:bg-indigo-50 text-sm">
-                        <span class="font-semibold text-gray-800">60 Months</span>
-                        <span class="text-xs mt-1 text-gray-500">6.5% APR</span>
-                    </div>
-                </label>
-
-                <label class="relative block">
-                    <input type="radio" name="period" class="peer sr-only">
-                    <div class="h-full flex flex-col items-center justify-center px-2 py-3 rounded-lg border-2 border-gray-200 cursor-pointer transition-all hover:border-indigo-600 peer-checked:border-indigo-600 peer-checked:bg-indigo-50 text-sm">
-                        <span class="font-semibold text-gray-800">72 Months</span>
-                        <span class="text-xs mt-1 text-gray-500">7.2% APR</span>
-                    </div>
-                </label>
-            </div>
-
-            <div class="mt-6 text-center">
-                <div class="text-2xl font-bold text-indigo-600">$2,166/mo</div>
-                <p class="text-sm text-gray-500">Monthly Payment</p>
+                <div class="mb-6">
+                    <label for="tradeIn" class="block text-sm font-medium text-gray-700">Add a trade-in value</label>
+                    <input type="text" id="tradeIn" placeholder="Est. Trade-in value" class="mt-2 w-full border rounded-md p-2">
+                </div>
             </div>
         </div>
-
-        <button class="w-full mt-8 bg-indigo-600 text-white py-4 px-8 rounded-lg font-semibold hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition-colors duration-300">
-            Apply Now
-        </button>
-
-        <p class="mt-4 text-sm text-gray-500 text-center">Terms and conditions apply. Rates subject to change.</p>
     </div>
-    
 
+    <script>
+        function updateCashDownValue(value) {
+            document.getElementById('cashDownValue').textContent = value;
+            calculatePayment();
+        }
+
+        document.getElementById('creditScore').addEventListener('input', function() {
+            document.getElementById('creditScoreValue').textContent = this.value;
+            calculatePayment();
+        });
+
+        document.querySelectorAll('.term-btn').forEach(button => {
+            button.addEventListener('click', function() {
+                document.querySelectorAll('.term-btn').forEach(btn => btn.classList.remove('bg-blue-500', 'text-white'));
+                this.classList.add('bg-blue-500', 'text-white');
+                calculatePayment();
+            });
+        });
+
+        document.getElementById('tradeIn').addEventListener('input', function() {
+            calculatePayment();
+        });
+
+        function calculatePayment() {
+            const cashDown = parseInt(document.getElementById('cashDown').value);
+            const creditScore = parseInt(document.getElementById('creditScore').value);
+            const tradeIn = parseFloat(document.getElementById('tradeIn').value) || 0;
+            const termLength = document.querySelector('.term-btn.bg-blue-500')?.dataset.value || 24;
+
+            fetch('/finance/{{ car.id }}', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    cash_down: cashDown,
+                    credit_score: creditScore,
+                    trade_in: tradeIn,
+                    loan_term: termLength
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('monthlyPayment').textContent = `$${data.monthly_payment.toFixed(2)}/mo`;
+                document.getElementById('apr').textContent = `APR: ${data.apr}%`;
+            });
+        }
+    </script>
 </body>
 </html>
-
-
-    

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, jsonify
 import json
 from finance import Finance
 from utils.data_parser import parse_vehicles
@@ -30,6 +30,14 @@ def create_map():
 # # print(car_real_info)
 # car_list = parse_vehicles(car_real_info)
 
+def create_car_list():
+    with open("data/vehicles.json") as d:
+        vehicles = json.load(d)
+        car_real_info = vehicles.get("vehicles", [])
+
+    car_list = parse_vehicles(car_real_info)
+    return car_list
+
 
 # Create the global vehicle_point_map variable
 
@@ -40,6 +48,37 @@ traits_to_ask = ["body_style", "drivetrain", "engine"]
 def home():
     return render_template("home.html", title="FindAYota - Home")
 
+@app.route("/finance/<int:car_id>", methods=["GET", "POST"])
+def finance(car_id):
+    car_list = create_car_list()
+    car = next((car for car in car_list if car.id == car_id), None)
+
+    if request.method == "POST":
+        data = request.get_json()
+        cash_down = int(data.get("cash_down", 0))
+        credit_score = int(data.get("credit_score", 300))
+        trade_in = float(data.get("trade_in", 0))
+        loan_term = int(data.get("loan_term", 24))
+
+        finance = Finance(
+            credit_score=credit_score,
+            down_payment=cash_down,
+            loan_term=loan_term,
+            trade_in=trade_in,
+            vehicle_price=car.price
+        )
+
+        apr = finance.calc_apr()
+        monthly_payment = finance.monthly_pay(apr)
+
+        return jsonify({
+            'monthly_payment': monthly_payment,
+            'apr': apr
+        })
+
+    return render_template("finance.html", car=car)
+    
+    
 @app.route("/form", methods=["GET", "POST"])
 def form():
     global vehicle_point_map  # Declare vehicle_point_map as global to modify it
