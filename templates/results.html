@@ -1,4 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-    <p>hi</p>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Find Your Fit - Results</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-800">
+
+  <!-- Header Section -->
+  <header class="bg-white shadow-md py-4">
+    <div class="container mx-auto px-4 flex justify-between items-center">
+      <h1 class="text-2xl font-bold">FindAYota <span class="text-[#EB0A1E]">Find Your Yota</span></h1>
+      <a href="form.html" class="text-gray-600">Exit Quiz</a>
+    </div>
+    <div class="container mx-auto px-4 text-center mt-4">
+      <h2 class="text-xl font-semibold"> We've found your fit!</h2>
+      <p class="text-gray-600">Save your faves and compare them later.</p>
+    </div>
+  </header>
+
+  <!-- Results Section -->
+  <section class="flex flex-col items-center bg-white py-10">
+    <h1 class="text-4xl font-bold text-gray-800">Top Matches</h1>
+    <div class="mt-10 grid max-w-md grid-cols-1 gap-6 px-2 sm:max-w-lg sm:px-20 md:max-w-screen-xl md:grid-cols-2 md:px-10 lg:grid-cols-3 lg:gap-8">
+      {% for car in cars %}
+      <article class="overflow-hidden rounded-xl border text-gray-700 shadow-md duration-500 ease-in-out hover:shadow-xl">
+        <div class="">
+          <img src="{{ car.image_path }}" alt="{{ car.model }}" class="w-full">
+        </div>
+
+        <div class="p-4">
+          <div class="pb-6">
+            <h2 class="text-lg hover:text-blue-600 font-medium duration-500 ease-in-out">{{ car.model }}</h2>
+            <p class="text-gray-500">{{ car.description }}</p>
+          </div>
+
+          <ul class="box-border flex list-none items-center border-t border-b border-solid border-gray-200 px-0 py-6">
+            <li class="mr-4 flex items-center text-left">
+              <i class="mr-2 text-2xl text-blue-600">
+                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24"><path fill="currentColor" d="M5 11h14v2H5z" /></svg>
+              </i>
+              <span class="text-sm">Engine: {{ car.engine }}</span>
+            </li>
+
+            <li class="mr-4 flex items-center text-left">
+              <i class="mr-2 text-2xl text-blue-600">
+                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24"><path fill="currentColor" d="M7 10h10v2H7z" /></svg>
+              </i>
+              <span class="text-sm">Drivetrain: {{ car.drivetrain | join(", ") }}</span>
+            </li>
+
+            <li class="flex items-center text-left">
+              <i class="mr-2 text-2xl text-blue-600">
+                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24"><path fill="currentColor" d="M10 6h4v2h-4z" /></svg>
+              </i>
+              <span class="text-sm">MPG: {{ car.mpg }}</span>
+            </li>
+          </ul>
+
+          <ul class="m-0 flex list-none items-center justify-between px-0 pt-6 pb-0">
+            <li class="text-left">
+              <span class="text-sm text-gray-400">Starting at</span>
+              <p class="m-0 text-base font-medium">${{ car.price }}</p>
+            </li>
+            <li class="text-right">
+              <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"> Buy Now</button>
+            </li>
+          </ul>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer class="bg-gray-900 text-white py-6">
+    <div class="container mx-auto px-4 text-center">
+      <p>&copy; 2025 FindAYota. All rights not reserved.</p>
+    </div>
+  </footer>
+
+</body>
 </html>
