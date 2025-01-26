@@ -5,6 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
     <title>Payment Estimator</title>
+    <style>
+        /* Styling the range slider */
+        .custom-slider {
+            -webkit-appearance: none; /* Remove default styling for Webkit browsers */
+            appearance: none; /* Remove default styling for other browsers */
+            width: 100%; /* Ensure slider takes full width */
+            height: 8px; /* Adjust height of the slider */
+            background: #d1d5db; /* Set the track background to gray */
+            border-radius: 5px; /* Optional: rounding the edges of the slider */
+        }
+
+        /* Style for the thumb (the draggable part of the slider) */
+        .custom-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background: #6b7280; /* Dark gray color for the thumb */
+            border-radius: 50%; /* Make it round */
+            cursor: pointer;
+        }
+
+        .custom-slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background: #6b7280; /* Dark gray color for the thumb */
+            border-radius: 50%; /* Make it round */
+            cursor: pointer;
+        }
+
+        /* Optional: Adding hover effect for the thumb */
+        .custom-slider::-webkit-slider-thumb:hover {
+            background: #4b5563; /* Darker gray when hovering */
+        }
+
+        .custom-slider::-moz-range-thumb:hover {
+            background: #4b5563; /* Darker gray when hovering */
+        }
+    </style>
 </head>
 <body class="bg-gray-100">
 
@@ -44,7 +83,7 @@
                         min="0" 
                         max="20000" 
                         step="1000" 
-                        class="w-full mt-2" 
+                        class="custom-slider mt-2" 
                         value="0" 
                         oninput="updateCashDownValue(this.value)"
                     >
@@ -66,7 +105,7 @@
                         <label for="creditScore" class="block text-sm font-medium text-gray-700">Est. Credit Score</label>
                         <span id="creditScoreValue" class="text-sm font-bold">0</span>
                     </div>
-                    <input type="range" id="creditScore" min="300" max="850" step="1" value="0" class="w-full mt-2">
+                    <input type="range" id="creditScore" min="300" max="850" step="1" value="0" class="custom-slider mt-2">
                 </div>
 
                 <div class="mb-6">
