@@ -77,6 +77,16 @@ def finance(car_id):
         })
 
     return render_template("finance.html", car=car)
+
+@app.route("/catalog")
+def catalog():
+    with open("data/vehicles.json") as d:
+            vehicles = json.load(d)
+            car_real_info = vehicles.get("vehicles", [])
+    car_list = parse_vehicles(car_real_info)
+
+    return render_template("catalog.html", cars=car_list)
+
     
     
 @app.route("/form", methods=["GET", "POST"])
