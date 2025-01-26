@@ -1,5 +1,3 @@
-
- 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -20,14 +18,14 @@
             }
         }
           // Move to the previous step
-    function previousStep() {
-        const steps = document.querySelectorAll('.step');
-        if (currentStep > 1) {
-            steps[currentStep - 1].classList.add('hidden'); // Hide current step
-            steps[currentStep - 2].classList.remove('hidden'); // Show previous step
-            currentStep--; // Decrement the step tracker
+        function previousStep() {
+            const steps = document.querySelectorAll('.step');
+            if (currentStep > 1) {
+                steps[currentStep - 1].classList.add('hidden'); // Hide current step
+                steps[currentStep - 2].classList.remove('hidden'); // Show previous step
+                currentStep--; // Decrement the step tracker
+            }
         }
-    }
 
         // Handle card selection
         function selectCard(cardId, step, event) {
@@ -48,11 +46,7 @@
             }
         }
     </script>
-
-
-
 </head>
-
 <body class="bg-gray-100">
 
     <!-- Navigation Bar -->
@@ -70,44 +64,44 @@
 
     <!-- Multi-Step Form -->
     <div class="container mx-auto mt-8 p-4 bg-white shadow-lg rounded-lg max-w-3xl">
-        <form method="POST" action="/form">
+        <form method="POST" action="/form" autocomplete="off">
             <!-- Step 1: Body Style -->
             <div class="step step-1">
                 <h2 class="text-xl font-semibold text-center mb-6">Step 1: Choose a Body Style</h2>
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
                     <label for="sedan" id="sedan" class="card border p-4 rounded-lg shadow hover:cursor-pointer hover:border-red-600"
                         onclick="selectCard('sedan', 1,event)">
-                        <input type="checkbox" id="sedan" name="body_style" value="sedan" class="hidden">
+                        <input type="radio" id="sedan" name="body_style" value="sedan" class="hidden">
                         <img src="../static/css/images/WebAssets/sedan_side.webp" alt="Sedan" class="w-full h-24 object-cover rounded-md">
                         <h3 class="text-center mt-2 text-lg font-medium">Sedan</h3>
                     </label>
                     <label for="hatchback" id="hatchback" class="card border p-4 rounded-lg shadow hover:cursor-pointer hover:border-red-600"
                         onclick="selectCard('hatchback', 1,event)">
-                        <input type="checkbox" id="hatchback" name="body_style" value="hatchback" class="hidden">
+                        <input type="radio" id="hatchback" name="body_style" value="hatchback" class="hidden">
                         <img src="../static/css/images/WebAssets/hatchback_side.webp" alt="Hatchback" class="w-full h-24 object-cover rounded-md">
                         <h3 class="text-center mt-2 text-lg font-medium">Hatchback</h3>
                     </label>
                     <label for="truck" id="truck" class="card border p-4 rounded-lg shadow hover:cursor-pointer hover:border-red-600"
                         onclick="selectCard('truck', 1,event)">
-                        <input type="checkbox" id="truck" name="body_style" value="truck" class="hidden">
+                        <input type="radio" id="truck" name="body_style" value="truck" class="hidden">
                         <img src="../static/css/images/WebAssets/truck_side.webp" alt="Truck" class="w-full h-24 object-cover rounded-md">
                         <h3 class="text-center mt-2 text-lg font-medium">Truck</h3>
                     </label>
                     <label for="suv" id="suv" class="card border p-4 rounded-lg shadow hover:cursor-pointer hover:border-red-600"
                         onclick="selectCard('suv', 1,event)">
-                        <input type="checkbox" id="suv" name="body_style" value="suv" class="hidden">
+                        <input type="radio" id="suv" name="body_style" value="suv" class="hidden">
                         <img src="../static/css/images/WebAssets/suv_side.webp" alt="SUV" class="w-full h-24 object-cover rounded-md">
                         <h3 class="text-center mt-2 text-lg font-medium">SUV</h3>
                     </label>
                     <label for="minivan" id="minivan" class="card border p-4 rounded-lg shadow hover:cursor-pointer hover:border-red-600"
                         onclick="selectCard('minivan', 1,event)">
-                        <input type="checkbox" id="minivan" name="body_style" value="minivan" class="hidden">
+                        <input type="radio" id="minivan" name="body_style" value="minivan" class="hidden">
                         <img src="../static/css/images/WebAssets/minivan_size.webp" alt="Minivan" class="w-full h-24 object-cover rounded-md">
                         <h3 class="text-center mt-2 text-lg font-medium">Minivan</h3>
                     </label>
                     <label for="coupe" id="coupe" class="card border p-4 rounded-lg shadow hover:cursor-pointer hover:border-red-600"
                         onclick="selectCard('coupe', 1,event)">
-                        <input type="checkbox" id="coupe" name="body_style" value="coupe" class="hidden">
+                        <input type="radio" id="coupe" name="body_style" value="coupe" class="hidden">
                         <img src="../static/css/images/WebAssets/coupe_side.webp" alt="Coupe" class="w-full h-24 object-cover rounded-md">
                         <h3 class="text-center mt-2 text-lg font-medium">Coupe</h3>
                     </label>
@@ -124,25 +118,25 @@
                 <div class="grid grid-cols-2 md:grid-cols-2 gap-6">
                     <label for="fwd" id="fwd" class="card border p-4 rounded-lg shadow hover:cursor-pointer hover:border-red-600"
                         onclick="selectCard('fwd', 2,event)">
-                        <input type="checkbox" id="fwd" name="drivetrain" value="fwd" class="hidden">
+                        <input type="radio" id="fwd" name="drivetrain" value="fwd" class="hidden">
                         <img src="../static/css/images/WebAssets/fwd_icon.png" alt="SUV" class="w-24 h-24 mx-auto object-cover rounded-md">
                         <h3 class="text-center mt-2 text-lg font-medium">FWD</h3>
                     </label>
                     <label for="rwd" id="rwd" class="card border p-4 rounded-lg shadow hover:cursor-pointer hover:border-red-600"
                         onclick="selectCard('rwd', 2,event)">
-                        <input type="checkbox" id="rwd" name="drivetrain" value="rwd" class="hidden">
+                        <input type="radio" id="rwd" name="drivetrain" value="rwd" class="hidden">
                         <img src="../static/css/images/WebAssets/rwd_icon.png" alt="SUV" class="w-24 h-24 mx-auto rounded-md">
                         <h3 class="text-center mt-2 text-lg font-medium">RWD</h3>
                     </label>
                     <label for="awd" id="awd" class="card border p-4 rounded-lg shadow hover:cursor-pointer hover:border-red-600"
                         onclick="selectCard('awd', 2,event)">
-                        <input type="checkbox" id="awd" name="drivetrain" value="awd" class="hidden">
+                        <input type="radio" id="awd" name="drivetrain" value="awd" class="hidden">
                         <img src="../static/css/images/WebAssets/awd_icon.png" alt="SUV" class="w-24 h-24 mx-auto object-cover rounded-md">
                         <h3 class="text-center mt-2 text-lg font-medium">AWD</h3>
                     </label>
                     <label for="4wd" id="4wd" class="card border p-4 rounded-lg shadow hover:cursor-pointer hover:border-red-600"
                         onclick="selectCard('4wd', 2,event)">
-                        <input type="checkbox" id="4wd" name="drivetrain" value="4wd" class="hidden">
+                        <input type="radio" id="4wd" name="drivetrain" value="4wd" class="hidden">
                         <img src="../static/css/images/WebAssets/4wd_icon.png" alt="SUV" class="w-24 h-24 mx-auto object-cover rounded-md">
                         <h3 class="text-center mt-2 text-lg font-medium">4WD</h3>
                     </label>
@@ -161,19 +155,19 @@
                 <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
                     <label for="gas" id="gas" class="card border p-4 rounded-lg shadow hover:cursor-pointer hover:border-red-600"
                         onclick="selectCard('gas', 3,event)">
-                        <input type="checkbox" id="gas" name="engine" value="gas" class="hidden">
+                        <input type="radio" id="gas" name="engine" value="gas" class="hidden">
                         <img src="../static/css/images/WebAssets/gas_icon.png" alt="SUV" class="w-24 h-24 mx-auto object-cover rounded-md">
                         <h3 class="text-center mt-2 text-lg font-medium">Gas</h3>
                     </label>
                     <label for="hybrid" id="hybrid" class="card border p-4 rounded-lg shadow hover:cursor-pointer hover:border-red-600"
                         onclick="selectCard('hybrid', 3,event)">
-                        <input type="checkbox" id="hybrid" name="engine" value="hybrid" class="hidden">
+                        <input type="radio" id="hybrid" name="engine" value="hybrid" class="hidden">
                         <img src="../static/css/images/WebAssets/hybrid_icon.png" alt="SUV" class="w-24 h-24 mx-auto object-cover rounded-md">
                         <h3 class="text-center mt-2 text-lg font-medium">Hybrid</h3>
                     </label>
                     <label for="electric" id="electric" class="card border p-4 rounded-lg shadow hover:cursor-pointer hover:border-red-600"
                         onclick="selectCard('electric', 3,event)">
-                        <input type="checkbox" id="electric" name="engine" value="electric" class="hidden">
+                        <input type="radio" id="electric" name="engine" value="electric" class="hidden">
                         <img src="../static/css/images/WebAssets/electric_icon.png" alt="SUV" class="w-24 h-24 mx-auto object-cover rounded-md">
                         <h3 class="text-center mt-2 text-lg font-medium">Electric</h3>
                     </label>
@@ -188,7 +182,6 @@
             </div>
         </form>
     </div>
-
-
+    
 </body>
 </html>

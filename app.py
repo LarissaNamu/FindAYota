@@ -32,7 +32,7 @@ def create_map():
 
 
 # Create the global vehicle_point_map variable
-vehicle_point_map = create_map()
+
 
 traits_to_ask = ["body_style", "drivetrain", "engine"]
 
@@ -47,7 +47,7 @@ def form():
     if request.method == "POST":  # user clicks submit
         user_data = request.form.to_dict()  # Collect user data
         
-        
+        vehicle_point_map = create_map()
         # Load data from the JSON file
         with open("data/vehicles.json") as d:
             vehicles = json.load(d)
