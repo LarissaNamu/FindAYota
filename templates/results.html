@@ -46,12 +46,12 @@
         </div>
 
         <div class="p-4">
-          <div class="pb-6">
+          <div class="pl-4 pb-6">
             <h2 class="text-lg hover:text-red-600 font-medium duration-500 ease-in-out">{{ car.model.title() }}</h2>
           </div>
 
-          <div class="box-border flex list-none text-center border-t border-b border-solid border-gray-200 px-0 py-6">
-            <div class="mr-4 flex items-center text-left">
+          <div class="box-border flex list-none text-center border-t border-b border-solid border-gray-200 mx-auto py-6">
+            <div class="mr-4 flex items-center text-center">
                 <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24"></svg>
               <span class="text-sm"><b>Engine</b><br> {{ car.engine }}</span>
             </div>
@@ -71,7 +71,7 @@
             </div>
         </div>
 
-          <ul class="m-0 flex list-none items-center justify-between px-0 pt-6 pb-0">
+          <ul class="m-0 pl-4 flex list-none items-center justify-between px-0 pt-6 pb-0">
             <li class="text-left">
               <span class="text-sm text-gray-400">Starting at</span>
               <p class="m-0 text-base font-medium">${{ "{:,.0f}".format(car.price) }}</p>
