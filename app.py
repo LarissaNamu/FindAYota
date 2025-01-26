@@ -60,9 +60,10 @@ def form():
 
         # Get top-matched cars
         top_cars = get_top_percents(vehicle_point_map)
-        print(top_cars)
-
-        return render_template("results.html", matches=top_cars, cars=car_list)
+        # converted_list = convert_map(car_list,top_cars)
+        # print(top_cars)
+        #print(converted_list)
+        return render_template("results.html", top_cars=top_cars, cars=car_list)
 
     return render_template("form.html", traits=traits_to_ask)  # will be an array
 
@@ -116,6 +117,17 @@ def compute_points(u_data, v_map, cars):
 # Cross: 5
 # RAV4 : 5
 # }
+
+# def convert_map(car_list, top_dict):
+#     # for top_car in top_dict:
+#     #     if top_car in car_list
+#     result_list = []
+#     for car in car_list:
+#         for top_car in top_dict:
+#             if car.get_model() == top_car:
+#                 result_list.append(car) # list of cars (Vehicle objects)
+#     return result_list
+
 
 def get_top_percents(v_map):  # return dictionary with top 3 cars and their percentage
     # Sort cars by points in descending order
