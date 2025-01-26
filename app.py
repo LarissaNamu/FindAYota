@@ -52,6 +52,38 @@ def home():
 def finance(car_id):
     car_list = create_car_list()
     car = next((car for car in car_list if car.id == car_id), None)
+
+    if request.method == "POST":
+        # Collect the form data from the frontend
+        cash_down = int(request.form.get("cash_down", 0))
+        credit_score = int(request.form.get("credit_score", 300))  # Default to 300 if no input
+        trade_in = float(request.form.get("trade_in", 0))
+        loan_term = int(request.form.get("loan_term", 24))  # Default to 36 months
+
+        # Instantiate the Finance class with the collected data
+        finance = Finance(
+            credit_score=credit_score,
+            down_payment=cash_down,
+            loan_term=loan_term,
+            trade_in=trade_in,
+            vehicle_price=car.price
+        )
+
+        # Calculate the APR and monthly payment
+        apr = finance.calc_apr()
+        monthly_payment = finance.monthly_pay(apr)
+
+        return render_template(
+            "finance.html", 
+            car=car, 
+            monthly_payment=monthly_payment, 
+            apr=apr,
+            cash_down=cash_down,
+            credit_score=credit_score,
+            trade_in=trade_in,
+            loan_term=loan_term,
+        )
+
     return render_template("finance.html", car=car)
     
     

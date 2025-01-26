@@ -9,11 +9,9 @@
 <body class="bg-gray-100">
 
     <nav class="bg-white p-6 flex items-center justify-between shadow-md">
-        <!-- Logo on the left -->
          <a href="{{ url_for('home') }}">
             <img src="../static/css/images/WebAssets/toyota_red_logo2.png" alt="Toyota Logo" class="w-32 h-auto">
         </a>
-        <!-- Links on the right -->
         <div class="space-x-6 text-red-600 font-bold">
             <a href="https://github.com/LarissaNamu/FindAYota" class="hover:text-red-700 transition duration-300">About</a>
             <a href="{{ url_for('form') }}" class="hover:text-red-700 transition duration-300">FindAYota</a>
@@ -21,12 +19,10 @@
     </nav>
 
     <div>
-        <!-- Left Side: Vehicle Image -->
         <div class="w-1/2 p-6 fixed h-full flex items-center justify-center">
             <img src="{{car.image_path}}" alt="Vehicle" class="w-full max-w-xl">
         </div>
 
-        <!-- Right Side: Scrollable Card -->
         <div class="w-1/2 ml-auto h-full p-6">
             <div class="bg-white shadow-lg rounded-lg p-6">
                 <h1 class="text-4xl font-bold mb-6">{{ car.model.title() }}</h1>
@@ -37,7 +33,6 @@
                     <span class="text-3xl">MSRP: ${{ "{:,.0f}".format(car.price) }}</span>
                 </div>
                 
-                <!-- Cash Down Slider -->
                 <div class="mb-6">
                     <div class="flex justify-between items-center">
                         <label for="cashDown" class="block text-sm font-medium text-gray-700">Cash Down</label>
@@ -55,7 +50,6 @@
                     >
                 </div>
                 
-                <!-- Term Length Buttons -->
                 <div class="mb-6">
                     <label for="termLength" class="block text-sm font-medium text-gray-700">Term Length</label>
                     <div id="termLengthOptions" class="flex space-x-4 mt-2">
@@ -67,80 +61,20 @@
                     </div>
                 </div>
 
-                <!-- Credit Score Slider -->
                 <div class="mb-6">
                     <div class="flex justify-between items-center">
-                        <label for="creditScore" class="block text-sm font-medium text-red-700">Est. Credit Score</label>
-                        <span id="creditScoreValue" class="text-sm font-bold">300</span>
+                        <label for="creditScore" class="block text-sm font-medium text-gray-700">Est. Credit Score</label>
+                        <span id="creditScoreValue" class="text-sm font-bold">0</span>
                     </div>
-                    <input type="range" id="creditScore" min="300" max="850" step="1" value="300" class="w-full mt-2">
+                    <input type="range" id="creditScore" min="300" max="850" step="1" value="0" class="w-full mt-2">
                 </div>
 
-                <!-- Trade-in Value -->
                 <div class="mb-6">
                     <label for="tradeIn" class="block text-sm font-medium text-gray-700">Add a trade-in value</label>
                     <input type="text" id="tradeIn" placeholder="Est. Trade-in value" class="mt-2 w-full border rounded-md p-2">
                 </div>
-
             </div>
         </div>
     </div>
-
-    <script>
-        // Function to update the value next to the cash down slider dynamically
-        function updateCashDownValue(value) {
-            document.getElementById("cashDownValue").textContent = value;
-            updateCalculation();
-        }
-
-        // Function to update all calculations
-        function updateCalculation() {
-            const cashDown = document.getElementById("cashDown").value;
-            const creditScore = document.getElementById("creditScore").value;
-            const tradeIn = document.getElementById("tradeIn").value || 0;  // Default to 0 if no value is provided
-            const termLength = document.querySelector(".term-btn.bg-red-600")?.dataset.value || 24; // Default to 24 months if no selection
-
-            // Send data to the backend to calculate the APR and monthly payment
-            fetch("/update_calculation", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    cashDown: cashDown,
-                    creditScore: creditScore,
-                    tradeIn: tradeIn,
-                    termLength: termLength
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById("monthlyPayment").textContent = `$${data.monthlyPayment}/mo`;
-                document.getElementById("apr").textContent = `APR: ${data.apr}%`;
-            })
-            .catch(error => console.error("Error updating calculation:", error));
-        }
-
-        // Add event listeners to buttons for term length selection
-        const termButtons = document.querySelectorAll('.term-btn');
-        termButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                termButtons.forEach(btn => btn.classList.remove('bg-red-600', 'text-white'));
-                button.classList.add('bg-red-600', 'text-white');
-                updateCalculation();
-            });
-        });
-
-        // Add event listener to credit score slider
-        const creditScoreSlider = document.getElementById('creditScore');
-        creditScoreSlider.addEventListener('input', () => {
-            document.getElementById('creditScoreValue').textContent = creditScoreSlider.value;
-            updateCalculation();
-        });
-
-        // Add event listener to trade-in value input
-        const tradeInInput = document.getElementById('tradeIn');
-        tradeInInput.addEventListener('input', updateCalculation);
-    </script>
 </body>
 </html>
