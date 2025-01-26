@@ -72,6 +72,7 @@ def form():
 
     return render_template("form.html", traits=traits_to_ask)  # will be an array
 
+
 # code in compute vehicle points function here
 # hierarchy
 # Engine -> Body -> DriveTrain -> MPG
@@ -81,7 +82,7 @@ def compute_points(u_data, v_map, cars):
     # print(cars) -- 'vehicles' big list
     hierarchy = {
         "engine": 50,
-        "body_style": 60,
+        "body_style": 90,
         "drivetrain": 10
     } #SUV FWD Hybrid
 
