@@ -11,7 +11,7 @@
     <!-- Navigation Bar -->
     <nav class="bg-white p-6 flex items-center justify-between shadow-md">
         <!-- Logo on the left -->
-        <img src="../static/css/images/WebAssets/toyota_red_logo2.png" alt="Toyota Logo" class="w-32 h-auto">
+        <img src="../static/css/images/WebAssets/toyota_header_logo.png" alt="Toyota Logo" class="w-32 h-auto">
         
         <!-- Links on the right -->
         <div class="space-x-6 text-red-500 font-bold">
@@ -37,75 +37,97 @@
             <div class="mr-auto place-self-center lg:col-span-7 py-32">
                 <h1 class="max-w-2xl mb-4 text-4xl font-bold tracking-tight leading-none md:text-5xl xl:text-5xl dark:text-white">Find the Perfect Toyota for You</h2>
                 <p class="max-w-2xl mb-6 font-normal text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-white">Explore our 2025 Toyota lineup and discover the vehicle that fits your lifestyle. Take the form, share your preferences, and let us do the matching for you!</p>
-                <a href="{{ url_for('form') }}" class="inline-flex items-center justify-center px-[250px] py-3 mr-3 text-2xl font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900 hover:text-red-500">
+                <!-- <a href="{{ url_for('form') }}" class="inline-flex items-center justify-center px-[250px] py-3 mr-3 text-2xl font-medium text-center text-white rounded-lg bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-900 hover:text-red-500">
                     FindAYota
                     <svg class="w-5 h-5 ml-2 -mr-1" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                </a>
+                </a> -->
+                  <button
+                    class="relative group inline-flex items-center px-8 py-2.5 overflow-hidden text-lg font-medium text-black border-2 border-white hover:border-red-600 rounded-lg bg-white hover:text-white group">
+                    <span
+                    class="absolute left-0 block w-full h-0 transition-all bg-red-600 opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>
+                      <span class="absolute right-0 flex items-center justify-start w-10 h-10 duration-300 transform translate-x-full group-hover:translate-x-0 ease">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                        </svg>
+                      </span>
+                    <span class="relative text-base font-semibold transition-all duration-300 group-hover:-translate-x-3">
+                      <a href="{{ url_for('form') }}">
+                        FindAYota
+                      </a>
+                    </span>
+                  </button>
             </div>           
         </div>
     </section>
 
-    <section class="bg-red-600">
-        <div class="max-w-screen-xl px-4 py-6 mx-auto text-center lg:py-12 lg:px-6">
-            <figure class="max-w-screen-md mx-auto">
-                <svg class="h-12 mx-auto mb-3 text-white" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z" fill="currentColor"/>
-                </svg> 
-                <blockquote>
-                    <p class="text-2xl font-medium text-white">"FindAYota is just awesome. It helped me choose a Toyota that was perfect for my needs."</p>
-                </blockquote>
-                <figcaption class="flex items-center justify-center mt-6 space-x-3">
-                    <img class="w-6 h-6 rounded-full" src="../static/css/images/WebAssets/IMG_6064.jpg" alt="profile picture">
-                    <div class="flex items-center divide-x-2 divide-white">
-                        <div class="pr-3 font-medium text-gray-900 dark:text-white">Rivan Adhikari</div>
-                        <div class="pl-3 text-sm font-light text-white">2025 Toyota Corolla Cross</div>
-                    </div>
-                </figcaption>
-            </figure>
-        </div>
-      </section>
-
     <section>
-        <div class="container mx-auto px-4 py-8">
-            <div class="grid grid-cols-1 sm:grid-cols-5 gap-4">
+        <div class="container mx-auto px-4 pb-12 text-center">
+            <h1 class="text-3xl font-bold text-black pt-6 pb-8">A lineup perfect for any occasion.</h1>
+            <div class="grid grid-cols-1 sm:grid-cols-6 gap-4">
               <!-- Commuter -->
               <div class="relative bg-white rounded-lg shadow-lg overflow-hidden">
-                <img src="path/to/your/fast-charging-image.jpg" alt="Fast Charging" class="w-full h-64 object-cover">
-                <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end">
-                  <h3 class="text-white text-xl font-bold p-4">Fast charging</h3>
+                <img src="../static/css/images/WebAssets/corolla_front_page.jpeg" alt="Fast Charging" class="w-full h-64 object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-10 flex items-end">
+                  <h3 class="text-white text-xl font-bold p-4">Commuter</h3>
+                </div>
+              </div>
+              <!-- Eco-Friendly -->
+              <div class="relative bg-white rounded-lg shadow-lg overflow-hidden">
+                <img src="../static/css/images/WebAssets/prius_front_page.jpeg" alt="Gear Tunnel Storage" class="w-full h-64 object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-10 flex items-end">
+                  <h3 class="text-white text-xl font-bold p-4">Eco-Friendly</h3>
                 </div>
               </div>
               <!-- Family Hauler -->
               <div class="relative bg-white rounded-lg shadow-lg overflow-hidden">
-                <img src="path/to/your/driving-dynamics-image.jpg" alt="Advanced Driving Dynamics" class="w-full h-64 object-cover">
-                <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end">
-                  <h3 class="text-white text-xl font-bold p-4">Advanced driving dynamics</h3>
+                <img src="../static/css/images/WebAssets/highlander_front_page.jpeg" alt="Advanced Driving Dynamics" class="w-full h-64 object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-10 flex items-end">
+                  <h3 class="text-white text-xl font-bold p-4">Family Hauler</h3>
                 </div>
               </div>
               <!-- Off-Road -->
               <div class="relative bg-white rounded-lg shadow-lg overflow-hidden">
-                <img src="path/to/your/gear-tunnel-image.jpg" alt="Gear Tunnel Storage" class="w-full h-64 object-cover">
-                <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end">
-                  <h3 class="text-white text-xl font-bold p-4">Gear Tunnel storage</h3>
+                <img src="../static/css/images/WebAssets/4runner_front_page.jpeg" alt="Gear Tunnel Storage" class="w-full h-64 object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-20 flex items-end">
+                  <h3 class="text-white text-xl font-bold p-4">Off-Road</h3>
                 </div>
               </div>
               <!-- Utilitarian -->
               <div class="relative bg-white rounded-lg shadow-lg overflow-hidden">
-                <img src="path/to/your/gear-tunnel-image.jpg" alt="Gear Tunnel Storage" class="w-full h-64 object-cover">
-                <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end">
-                  <h3 class="text-white text-xl font-bold p-4">Gear Tunnel storage</h3>
+                <img src="../static/css/images/WebAssets/tundra_front_page.jpeg" alt="Gear Tunnel Storage" class="w-full h-64 object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-10 flex items-end">
+                  <h3 class="text-white text-xl font-bold p-4">Utilitarian</h3>
                 </div>
               </div>
               <!-- Sporty -->
               <div class="relative bg-white rounded-lg shadow-lg overflow-hidden">
-                <img src="path/to/your/gear-tunnel-image.jpg" alt="Gear Tunnel Storage" class="w-full h-64 object-cover">
-                <div class="absolute inset-0 bg-black bg-opacity-40 flex items-end">
-                  <h3 class="text-white text-xl font-bold p-4">Gear Tunnel storage</h3>
+                <img src="../static/css/images/WebAssets/supra_front_page.jpeg" alt="Gear Tunnel Storage" class="w-full h-64 object-cover">
+                <div class="absolute inset-0 bg-black bg-opacity-0 flex items-end">
+                  <h3 class="text-white text-xl font-bold p-4">Sporty</h3>
                 </div>
               </div>
             </div>
           </div>
     </section>
     
+    <section class="bg-red-600">
+      <div class="max-w-screen-xl px-4 py-6 mx-auto text-center lg:py-12 lg:px-6">
+          <figure class="max-w-screen-md mx-auto">
+              <svg class="h-12 mx-auto mb-3 text-white" viewBox="0 0 24 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M14.017 18L14.017 10.609C14.017 4.905 17.748 1.039 23 0L23.995 2.151C21.563 3.068 20 5.789 20 8H24V18H14.017ZM0 18V10.609C0 4.905 3.748 1.038 9 0L9.996 2.151C7.563 3.068 6 5.789 6 8H9.983L9.983 18L0 18Z" fill="currentColor"/>
+              </svg> 
+              <blockquote>
+                  <p class="text-2xl font-medium text-white">"FindAYota is just awesome. It helped me choose a Toyota that was perfect for my needs."</p>
+              </blockquote>
+              <figcaption class="flex items-center justify-center mt-6 space-x-3">
+                  <img class="w-6 h-6 rounded-full" src="../static/css/images/WebAssets/IMG_6064.jpg" alt="profile picture">
+                  <div class="flex items-center divide-x-2 divide-white">
+                      <div class="pr-3 font-medium text-gray-900 dark:text-white">Rivan Adhikari</div>
+                      <div class="pl-3 text-sm font-light text-white">2025 Toyota Corolla Cross</div>
+                  </div>
+              </figcaption>
+          </figure>
+      </div>
+    </section>
 </body>
 </html>

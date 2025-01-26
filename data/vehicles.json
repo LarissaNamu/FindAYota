@@ -73,7 +73,7 @@
         {
             "id":8,
             "model": "GR86",
-            "price": 30000,
+            "price": 29300,
             "body_style": "Coupe",
             "drivetrain": ["RWD"],
             "mpg": 23,
@@ -93,7 +93,7 @@
         {
             "id":10,
             "model": "GR Supra",
-            "price": 28350,
+            "price": 56250,
             "body_style": "Coupe",
             "drivetrain": ["RWD"],
             "mpg": 27,
