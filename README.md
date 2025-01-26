@@ -1,6 +1,6 @@
 # FindAYota
 
-Welcome to the **FindAYota**! A website that will help guide you to the Toyota 2025 vehicle of your dreams! We hope that our work will help many customers find personal Toyota vehicles that matches their lifestyle needs and preferences.
+Welcome to **FindAYota**! A website that will help guide you to the Toyota 2025 vehicle of your dreams! We hope that our work will help many customers find personal Toyota vehicles that matches their lifestyle needs and preferences.
 **FindAYota** is also our team's submission to **2025 TAMUHack's Toyota Challenge**! 
 
 ![d57f041b746852d7a10f3fc401592066](https://github.com/user-attachments/assets/80af437f-52ef-46d9-8942-b7de325bd62c)
