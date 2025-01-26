@@ -59,8 +59,11 @@
 
     <div>
         <div class="w-1/2 p-6 fixed h-full flex items-center justify-center">
-            <img src="{{car.image_path}}" alt="Vehicle" class="w-full max-w-xl">
+            <img src="{{car.image_path}}" alt="Vehicle" class="w-[90vw] max-w-[800px] h-auto">
         </div>
+        
+        
+        
 
         <div class="w-1/2 ml-auto h-full p-6">
             <div class="bg-white shadow-lg rounded-lg p-6">
@@ -129,8 +132,8 @@
 
         document.querySelectorAll('.term-btn').forEach(button => {
             button.addEventListener('click', function() {
-                document.querySelectorAll('.term-btn').forEach(btn => btn.classList.remove('bg-blue-500', 'text-white'));
-                this.classList.add('bg-blue-500', 'text-white');
+                document.querySelectorAll('.term-btn').forEach(btn => btn.classList.remove('bg-red-500', 'text-white'));
+                this.classList.add('bg-red-500', 'text-white');
                 calculatePayment();
             });
         });
@@ -143,7 +146,7 @@
             const cashDown = parseInt(document.getElementById('cashDown').value);
             const creditScore = parseInt(document.getElementById('creditScore').value);
             const tradeIn = parseFloat(document.getElementById('tradeIn').value) || 0;
-            const termLength = document.querySelector('.term-btn.bg-blue-500')?.dataset.value || 24;
+            const termLength = document.querySelector('.term-btn.bg-red-500')?.dataset.value || 24;
 
             fetch('/finance/{{ car.id }}', {
                 method: 'POST',
