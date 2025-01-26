@@ -133,16 +133,23 @@ def get_top_percents(v_map):  # return dictionary with top 3 cars and their perc
     
     # Sum the points of the top 3 cars
     sum_top_3 = sum(points for c, points in top_3)
-
+    # print(top_3)
+    # print(sum_top_3)
     # Prevent division by zero if there are no points
     if sum_top_3 == 0:
-        return {"message": "No cars match your criteria."}
-
-    # Calculate the percentage for each car in the top 3
-    top_3_map = {
-        car: round((points / sum_top_3) * 100, 2)
+        top_3 = [("Corolla Sedan",0), ("RAV4 Hybrid",0), ("Tacoma",0)]
+        top_3_map = {
+        car: round((points / 1) * 100, 2)
         for car, points in top_3
-    }
+        }
+    else:
+        # Calculate the percentage for each car in the top 3
+        top_3_map = {
+            car: round((points / sum_top_3) * 100, 2)
+            for car, points in top_3
+        }
+    
+    
 
     return top_3_map
 
