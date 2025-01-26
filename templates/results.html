@@ -35,28 +35,26 @@
             <h2 class="text-lg hover:text-red-600 font-medium duration-500 ease-in-out">{{ car.model.title() }}</h2>
           </div>
 
-          <ul class="box-border flex list-none items-center border-t border-b border-solid border-gray-200 px-0 py-6">
-            <li class="mr-4 flex items-center text-left">
-              <i class="mr-2 text-2xl text-red-600">
-                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24"><path fill="currentColor" d="M5 11h14v2H5z" /></svg>
-              </i>
-              <span class="text-sm">Engine: {{ car.engine }}</span>
-            </li>
+          <div class="box-border flex list-none text-center border-t border-b border-solid border-gray-200 px-0 py-6">
+            <div class="mr-4 flex items-center text-left">
+                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24"></svg>
+              <span class="text-sm"><b>Engine</b><br> {{ car.engine }}</span>
+            </div>
 
-            <li class="mr-4 flex items-center text-left">
+            <div class="mr-4 flex items-center text-center">
               <i class="mr-2 text-2xl text-red-600">
-                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24"><path fill="currentColor" d="M7 10h10v2H7z" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24"></svg>
               </i>
-              <span class="text-sm">Drivetrain: {{ car.drivetrain | join(", ") }}</span>
-            </li>
+              <span class="text-sm"><b>Drivetrain</b><br> {{ car.drivetrain | join(", ") }}</span>
+            </div>
 
-            <li class="flex items-center text-left">
+            <div class="flex items-center text-center">
               <i class="mr-2 text-2xl text-red-600">
-                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24"><path fill="currentColor" d="M10 6h4v2h-4z" /></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24"></svg>
               </i>
-              <span class="text-sm">MPG: {{ car.mpg }}</span>
-            </li>
-          </ul>
+              <span class="text-sm"><b>MPG</b><br>  {{ car.mpg }}</span>
+            </div>
+        </div>
 
           <ul class="m-0 flex list-none items-center justify-between px-0 pt-6 pb-0">
             <li class="text-left">
