@@ -11,8 +11,8 @@
   <!-- Header Section -->
   <header class="bg-white shadow-md py-4">
     <div class="container mx-auto px-4 flex justify-between items-center">
-      <h1 href="{{ url_for('home') }}" class="text-2xl font-bold">FindAYota <span class="text-[#EB0A1E]">Find Your Yota</span></h1>
-      <a href="{{ url_for('home') }}" class="text-gray-600">Exit Quiz</a>
+      <h1 class="text-2xl font-bold">FindAYota <span class="text-[#EB0A1E]">Find Your Yota</span></h1>
+      <a href="form.html" class="text-gray-600">Exit Quiz</a>
     </div>
     <div class="container mx-auto px-4 text-center mt-4">
       <h2 class="text-xl font-semibold"> We've found your fit!</h2>
@@ -24,7 +24,7 @@
   <section class="flex flex-col items-center bg-white py-10">
     <h1 class="text-4xl font-bold text-gray-800">Top Matches</h1>
     <div class="mt-10 grid max-w-md grid-cols-1 gap-6 px-2 sm:max-w-lg sm:px-20 md:max-w-screen-xl md:grid-cols-2 md:px-10 lg:grid-cols-3 lg:gap-8">
-      {% for car in cars %}
+    {% for car, percentage in matches %}
       <article class="overflow-hidden rounded-xl border text-gray-700 shadow-md duration-500 ease-in-out hover:shadow-xl">
         <div class="">
           <img src="{{ car.image_path }}" alt="{{ car.model }}" class="w-full">
@@ -33,7 +33,6 @@
         <div class="p-4">
           <div class="pb-6">
             <h2 class="text-lg hover:text-blue-600 font-medium duration-500 ease-in-out">{{ car.model }}</h2>
-            <p class="text-gray-500">{{ car.description }}</p>
           </div>
 
           <ul class="box-border flex list-none items-center border-t border-b border-solid border-gray-200 px-0 py-6">
@@ -65,7 +64,7 @@
               <p class="m-0 text-base font-medium">${{ car.price }}</p>
             </li>
             <li class="text-right">
-              <button class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"> Buy Now</button>
+              <a href="finance.html" class="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"> Buy Now</a>
             </li>
           </ul>
         </div>
