@@ -15,8 +15,8 @@
         
         <!-- Links on the right -->
         <div class="space-x-6 text-red-500 font-bold">
-            <a href="https://github.com/LarissaNamu/FindAYota" class="hover:text-red-700 transition duration-300">About</a>
-            <a href="{{ url_for('form') }}" class="hover:text-red-700 transition duration-300">FindAYota</a>
+            <a href="https://github.com/LarissaNamu/FindAYota" class="text-lg hover:text-red-700 transition duration-300">About</a>
+            <a href="{{ url_for('form') }}" class="text-lg hover:text-red-700 transition duration-300">FindAYota</a>
         </div>
     </nav>
     
@@ -127,6 +127,29 @@
                   </div>
               </figcaption>
           </figure>
+      </div>
+    </section>
+
+    <section class="relative h-screen bg-cover bg-center" style="background-image: url('../static/css/images/WebAssets/toyota_lineup.jpg');">
+      <!-- Overlay -->
+      <div class="absolute inset-0 bg-black bg-opacity-0"></div>
+  
+      <!-- Content -->
+      <div class="relative z-10 flex flex-col items-center justify-start h-full text-white text-center px-4 py-24">
+        <h1 class="text-4xl md:text-5xl font-bold mb-12">Drive change your way.</h1>
+        <button class="relative group inline-flex items-center px-8 py-2.5 overflow-hidden text-lg font-medium text-black border-2 border-white hover:border-red-600 rounded-lg bg-white hover:text-white group">
+          <span class="absolute left-0 block w-full h-0 transition-all bg-red-600 opacity-100 group-hover:h-full top-1/2 group-hover:top-0 duration-400 ease"></span>
+            <span class="absolute right-0 flex items-center justify-start w-10 h-10 duration-300 transform translate-x-full group-hover:translate-x-0 ease">
+              <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+              </svg>
+            </span>
+          <span class="relative text-base font-semibold transition-all duration-300 group-hover:-translate-x-3">
+            <a href="{{ url_for('form') }}">
+              FindAYota
+            </a>
+          </span>
+        </button>
       </div>
     </section>
 </body>
