@@ -64,7 +64,7 @@
               <p class="m-0 text-base font-medium">${{ car.price }}</p>
             </li>
             <li class="text-right">
-              <a href="finance.html" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"> Buy Now</a>
+              <a href="{{ url_for('finance',car_id=car.id)  }}" class="bg-red-500 text-white px-4 py-2 rounded-md hover:bg-red-600"> Buy Now</a>
             </li>
           </ul>
         </div>

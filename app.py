@@ -30,6 +30,14 @@ def create_map():
 # # print(car_real_info)
 # car_list = parse_vehicles(car_real_info)
 
+def create_car_list():
+    with open("data/vehicles.json") as d:
+        vehicles = json.load(d)
+        car_real_info = vehicles.get("vehicles", [])
+
+    car_list = parse_vehicles(car_real_info)
+    return car_list
+
 
 # Create the global vehicle_point_map variable
 vehicle_point_map = create_map()
@@ -40,6 +48,13 @@ traits_to_ask = ["body_style", "drivetrain", "engine"]
 def home():
     return render_template("home.html", title="FindAYota - Home")
 
+@app.route("/finance/<int:car_id>")
+def finance(car_id):
+    car_list = create_car_list()
+    car = next((car for car in car_list if car.id == car_id), None)
+    return render_template("finance.html", car=car)
+    
+    
 @app.route("/form", methods=["GET", "POST"])
 def form():
     global vehicle_point_map  # Declare vehicle_point_map as global to modify it
