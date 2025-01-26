@@ -8,16 +8,31 @@
 </head>
 <body class="bg-gray-100 text-gray-800">
 
+  <!-- Navigation Bar -->
+  <nav class="bg-white p-6 flex items-center justify-between shadow-md">
+    <!-- Logo on the left -->
+     <a href="{{ url_for('home') }}">
+        <img src="../static/css/images/WebAssets/toyota_header_logo.png" alt="Toyota Logo" class="w-32 h-auto">
+    </a>
+    <!-- Links on the right -->
+    <div class="space-x-6 text-red-500 font-bold">
+        <a href="https://github.com/LarissaNamu/FindAYota" class="hover:text-red-700 transition duration-300">About</a>
+        <a href="{{ url_for('form') }}" class="hover:text-red-700 transition duration-300">FindAYota</a>
+    </div>
+</nav>
+
   <!-- Header Section -->
-  <header class="bg-white shadow-md py-4">
-    <div class="container mx-auto px-4 flex justify-between items-center">
-      <h1 class="text-2xl font-bold">FindAYota <span class="text-[#EB0A1E]">Find Your Yota</span></h1>
-      <a href="{{ url_for('home') }}" class="text-gray-600 hover:text-red-600">Exit Quiz</a>
+  <header class="bg-white shadow-md">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="text-5xl font-semibold mb-4">We've found your fit!</h2>
+      <p class="text-gray-600 mb-3">Choose your favorite and explore financing options</p>
+      <a href="{{ url_for('form') }}" class="text-base font-semibold mt-12 group relative w-max">
+        <span>Or Retake Quiz</span>
+        <span class="absolute -bottom-1 left-1/2 w-0 transition-all h-0.5 bg-red-600 group-hover:w-3/6"></span>
+        <span class="absolute -bottom-1 right-1/2 w-0 transition-all h-0.5 bg-red-600 group-hover:w-3/6"></span>
+      </a>
     </div>
-    <div class="container mx-auto px-4 text-center mt-4">
-      <h2 class="text-xl font-semibold"> We've found your fit!</h2>
-      <p class="text-gray-600">Save your faves and compare them later.</p>
-    </div>
+    
   </header>
 
   <!-- Results Section -->
@@ -31,12 +46,12 @@
         </div>
 
         <div class="p-4">
-          <div class="pb-6">
+          <div class="pl-4 pb-6">
             <h2 class="text-lg hover:text-red-600 font-medium duration-500 ease-in-out">{{ car.model.title() }}</h2>
           </div>
 
-          <div class="box-border flex list-none text-center border-t border-b border-solid border-gray-200 px-0 py-6">
-            <div class="mr-4 flex items-center text-left">
+          <div class="box-border flex list-none text-center border-t border-b border-solid border-gray-200 mx-auto py-6">
+            <div class="mr-4 flex items-center text-center">
                 <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" class="h-5 w-5" viewBox="0 0 24 24"></svg>
               <span class="text-sm"><b>Engine</b><br> {{ car.engine }}</span>
             </div>
@@ -56,7 +71,7 @@
             </div>
         </div>
 
-          <ul class="m-0 flex list-none items-center justify-between px-0 pt-6 pb-0">
+          <ul class="m-0 pl-4 flex list-none items-center justify-between px-0 pt-6 pb-0">
             <li class="text-left">
               <span class="text-sm text-gray-400">Starting at</span>
               <p class="m-0 text-base font-medium">${{ "{:,.0f}".format(car.price) }}</p>
@@ -69,6 +84,7 @@
       </article>
       {% endfor %}
     </div>
+    
   </section>
 
   <!-- Footer Section -->
